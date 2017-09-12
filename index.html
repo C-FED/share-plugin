@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Qzone分享组件是QQ互联提供的一种社交组件，通过添加QQ互联的分享组件，用户可以将该站点的内容分享到QQ空间和朋友网，QQ互联提供多种分享组件格式供网站主选择；">
+    <meta name="keywords" content="分享、分享组件、分享到QQ空间、分享到朋友网、QQ互联">
+    <title>我是标题</title>
+    <link rel="stylesheet" href="./css/share.css" />
+</head>
+<body>
+
+    <!-- MyShare -->
+    <div id="shareArea"></div>
+    <div id="qrcode" class="qrcode" style="display:none;"><p class="title">微信扫一扫 | 点击关闭</p></div>
+    <!-- MyShare END -->
+    
+    <!-- MyShare -->
+    <div id="shareArea2"></div> 
+    <div id="qrcode2" class="qrcode" style="display:none;"><p class="title">微信扫一扫 | 点击关闭</p></div>
+    <!-- MyShare END -->
+
+<script type="text/javascript" src="./js/share.new.js"></script>
+<script type="text/javascript" src="./js/qrcode.min.js"></script>
+<script>
+    new Share({
+        el:"shareArea", // id
+        bounds:["weibo","qq","weixin"],
+        info:{
+            url:"http://www.baidu.com",
+            title:"你好标题",
+            description:"我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
+            pic:"https://www.baidu.com/img/bd_logo1.png"
+        },
+        callback:function (val) {
+            var qrcode=document.getElementById("qrcode");
+            var weixin=document.getElementById("shareArea").querySelectorAll(".weixin")[0];
+            new QRCode(qrcode,val);
+            return {
+                qrcode,
+                weixin
+            };
+        }
+    });
+
+    new Share({
+        el:"shareArea2", // id
+        bounds:["weibo","weixin"],
+        info:{
+            url:"http://www.taobao.com",
+            title:"你好标题22222",
+            description:"我是描述22224234324324434我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
+            pic:"http://www.315online.com/uploads/121022/taobao.jpg"
+        },
+        callback:function (val) {
+            var qrcode=document.getElementById("qrcode2");
+            var weixin=document.getElementById("shareArea2").querySelectorAll(".weixin")[0];
+            new QRCode(qrcode,val);
+            return {
+                qrcode,
+                weixin
+            };
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+

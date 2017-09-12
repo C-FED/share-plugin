@@ -1,0 +1,51 @@
+.sharebox{
+    overflow: hidden;
+}
+.share-item{
+    float: left;
+    display:block;
+    width:32px;
+    height:32px;
+    margin:0 2px;
+    background-position:0 0;
+    background-image:url("../images/share_ico_32x32.png");
+    color:transparent;
+    -webkit-filter:grayscale(100%);
+    filter:grayscale(100%);
+}
+.share-item:hover{
+    -webkit-filter:grayscale(0);
+    filter:grayscale(0);
+    opacity:0.8;
+    filter:alpha(opacity=80);
+}
+.share-item.weixin{
+    background-position:0 -3680px;        
+}
+.share-item.weibo{
+    background-position:0 0;
+}
+.share-item.qq{
+    background-position:0 -4032px;
+}
+.share-item.qqzone{
+    background-position:0 -32px;
+}
+.share-item.qqweibo{
+    background-position:0 -1760px;
+}
+.share-item.renren{
+    background-position:0 -64px;
+}
+.qrcode{
+    position:fixed;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    border:1px solid #ccc;
+    padding:10px;
+}
+.qrcode>.title{
+    text-align:center;
+}
