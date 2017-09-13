@@ -56,7 +56,7 @@
         // 生成HTML结构
         var html=makeTemplate(that.config.bounds,that.config.info);
         // 插入到DOM中
-        that.el.innerHTML=html;
+        that.el.innerHTML+=html;
         // 判断是否需要qrcode
         if (that.config.bounds.indexOf("weixin")!=-1) {
             // 防止重复引入js
