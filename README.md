@@ -1,2 +1,5 @@
 # share-plugin
-share-plugin
+share-plugin  
+
+
+DEP: QRCode
