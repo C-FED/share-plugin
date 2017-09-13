@@ -1,5 +1,6 @@
 # share-plugin
 share-plugin  
 
+LISCENCE:MIT
 
-DEP: QRCode
+DEP: QRCode [https://davidshimjs.github.io/qrcodejs/](https://davidshimjs.github.io/qrcodejs/)
