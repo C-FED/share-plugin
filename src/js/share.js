@@ -42,6 +42,8 @@
             qrcode.style.display="none";
         },false);
     }
+    var __isNeed=true;
+    var QRS=null;
 
     // class
     function Share(config) {
@@ -59,22 +61,28 @@
         that.el.innerHTML+=html;
         // 判断是否需要qrcode
         if (that.config.bounds.indexOf("weixin")!=-1) {
+            // 加入QRcode结构
+            var div=document.createElement("div");
+            div.className="qrcode";
+            div.style.cssText="display:none";
+            div.innerHTML='<p class="title">微信扫一扫 | 点击关闭</p>';
+            that.el.appendChild(div);
             // 防止重复引入js
-            var QRS=document.getElementById("QRS");
-            if (QRS===null) {
+            if (__isNeed) {
                 QRS=document.createElement("script");
                 QRS.src="./js/qrcode.min.js";
                 QRS.id="QRS";
                 document.head.appendChild(QRS);
+                __isNeed=false;
             }
+            // js loaded
             QRS.addEventListener("load",function () {
-                var qrNode=document.getElementById(that.config.QRCdom);
+                var qrNode=that.el.querySelectorAll(".qrcode")[0];
                 var weixinNode=that.el.querySelectorAll(".weixin")[0];
                 new QRCode(qrNode,that.config.info.url);    
                 weixinHover(weixinNode,qrNode);
             },false);
         }
     };
-
     window.Share=Share;
 }(window));

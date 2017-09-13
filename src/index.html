@@ -12,16 +12,10 @@
 <body>
 
     <!-- MyShare -->
-    <div id="shareArea">666</div>
-    <div id="qrcode" class="qrcode" style="display:none;"><p class="title">微信扫一扫 | 点击关闭</p></div>
-    <!-- MyShare END -->
-    
-    <!-- MyShare -->
-    <div id="shareArea2">666</div>
-    <div id="qrcode2" class="qrcode" style="display:none;"><p class="title">微信扫一扫 | 点击关闭</p></div>
+    <div id="shareArea"></div>
     <!-- MyShare END -->
 
-<script type="text/javascript" src="./js/share.min.js"></script>
+<script type="text/javascript" src="./js/share.js"></script>
 <!-- <script type="text/javascript" src="./js/qrcode.min.js"></script> -->
 <script>
     new Share({
@@ -32,21 +26,9 @@
             title:"你好标题",
             description:"我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
             pic:"https://www.baidu.com/img/bd_logo1.png"
-        },
-        QRCdom:"qrcode" // id
+        }
     });
 
-    new Share({
-        el:"shareArea2", // id
-        bounds:["weibo","weixin"],
-        info:{
-            url:"http://www.taobao.com",
-            title:"你好标题22222",
-            description:"我是描述22224234324324434我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
-            pic:"http://www.315online.com/uploads/121022/taobao.jpg"
-        },
-        QRCdom:"qrcode2" // id
-    });
 </script>
 </body>
 </html>
