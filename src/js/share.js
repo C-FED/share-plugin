@@ -1,4 +1,14 @@
+/**
+ * @author: Yangfan2016
+ * @ctime: 2017-09-12
+ * @utime: 2017-09-13
+ * @depend: qrcode.js
+ * @version: 1.0.2
+ * [share-plugin]
+ * @return {[Share]} [description]
+ */
 ;(function () {
+    var QRCode=window.QRCode;
     // 生成分享URL
     function makeShareURL(shareData) {
         var URL=encodeURIComponent(shareData.url);
@@ -22,10 +32,10 @@
     function makeTemplate(arr,shareData) {
         // ["weibo","weixin"]
         var urlData=makeShareURL(shareData);
-        var containerHTML='<div class="sharebox" id="shareBOX">';
+        var containerHTML='<div class="sharebox">';
         arr.forEach(function (item,index) {
             if (item==="weixin") {
-                containerHTML+='<a href="javascript:void(0);" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
+                containerHTML+='<a onclick="return false;" href="javascript:void(0);" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
             } else {
                 containerHTML+='<a href="'+urlData[item]+'" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
             }
@@ -42,47 +52,63 @@
             qrcode.style.display="none";
         },false);
     }
-    var __isNeed=true;
-    var QRS=null;
-
+    // makeQRCode
+    function makeQRCode(that) {
+        var qrNode=that.el.querySelectorAll(".qrcode")[0];
+        var weixinNode=that.el.querySelectorAll(".weixin")[0];
+        qrNode.innerHTML='<p class="title">微信扫一扫 | 点击关闭</p>';
+        var qr=new QRCode(qrNode,that.config.info.url); 
+        weixinHover(weixinNode,qrNode);
+    }
+    
     // class
     function Share(config) {
+        var that=this;
         this.config=config;
-        this.el=document.getElementById(this.config.el);
+        this.el=this.config.el;
+        // 加入qrcode结构
+        var div=document.createElement("div");
+        div.className="qrcode";
+        div.style.cssText="display:none";
+        this.el.appendChild(div);
+        // init
         this.init();
         return this;
     }
 
     Share.prototype.init=function () {
         var that=this;
+        var html='';
+        var info={};
         // 生成HTML结构
-        var html=makeTemplate(that.config.bounds,that.config.info);
+        // 判断是否有分享信息
+        if (typeof that.config.info==="object") {
+            html=makeTemplate(that.config.bounds,that.config.info);
+        } else {
+            // 默认用页面的head信息
+            info={
+                url:window.location.href,
+                title:document.title,
+                description:document.getElementsByName("description")[0]["content"]
+            };
+            html=makeTemplate(that.config.bounds,info);
+            // 存储到类
+            that.config.info=info;
+        }
         // 插入到DOM中
+        that.el.querySelectorAll(".sharebox")[0] && that.el.removeChild(that.el.querySelectorAll(".sharebox")[0]);
         that.el.innerHTML+=html;
         // 判断是否需要qrcode
         if (that.config.bounds.indexOf("weixin")!=-1) {
-            // 加入QRcode结构
-            var div=document.createElement("div");
-            div.className="qrcode";
-            div.style.cssText="display:none";
-            div.innerHTML='<p class="title">微信扫一扫 | 点击关闭</p>';
-            that.el.appendChild(div);
-            // 防止重复引入js
-            if (__isNeed) {
-                QRS=document.createElement("script");
-                QRS.src="./js/qrcode.min.js";
-                QRS.id="QRS";
-                document.head.appendChild(QRS);
-                __isNeed=false;
-            }
-            // js loaded
-            QRS.addEventListener("load",function () {
-                var qrNode=that.el.querySelectorAll(".qrcode")[0];
-                var weixinNode=that.el.querySelectorAll(".weixin")[0];
-                new QRCode(qrNode,that.config.info.url);    
-                weixinHover(weixinNode,qrNode);
-            },false);
+            makeQRCode(that);
         }
+    };
+    Share.prototype.makeShare=function (info) {
+        var that=this;
+        // 替换原来的信息
+        that.config.info=info;
+        // 刷新
+        that.init();
     };
     window.Share=Share;
 }(window));
