@@ -1,28 +1,4 @@
-// no-jq share-plugin
-// init
-;(function (w,d) {
-    // common data
-    var isCustomer=(typeof __config!="undefined")&&(__config instanceof Object);
-    var COMMONDATA={
-        "template":makeTemplate(["weibo","weixin","qq","qqzone","qqweibo","renren"])
-    };
-    if (isCustomer) {
-        COMMONDATA["share"]=__config;
-    }
-    // make html
-    function makeTemplate(arr) {
-        // ["weibo","weixin"]
-        var containerHTML='<div class="sharebox" id="shareBOX">';
-        arr.forEach(function (item,index) {
-            containerHTML+='<a href="javascript:void(0)" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';
-        });
-        containerHTML+='</div>';
-        return containerHTML;
-    }
-    // query dom  id
-    function queryDOM(selector) {
-        return d.getElementById(selector);
-    }
+;(function () {
     // 生成分享URL
     function makeShareURL(shareData) {
         var URL=encodeURIComponent(shareData.url);
@@ -39,53 +15,63 @@
             "qqweibo":"http://share.v.t.qq.com/index.php?c=share&a=index&title="+TITLE+"   "+DESCRIPTION+"&url="+URL+"&appkey=ce15e084124446b9a612a5c29f82f080&site=www.jiathis.com&pic="+PIC,
         };
     }
-    // 分发链接
-    function setAnchorHref(anchorArr) {
-        var urlData=makeShareURL(COMMONDATA["share"]);
-        [].forEach.call(anchorArr,function (item,index) {
-            if (item.dataset.type==="weixin") {
-                item.onclick=function () {makeQcode(urlData["weixin"]);}; // todo
+    // make html
+    function makeTemplate(arr,shareData) {
+        // ["weibo","weixin"]
+        var urlData=makeShareURL(shareData);
+        var containerHTML='<div class="sharebox" id="shareBOX">';
+        arr.forEach(function (item,index) {
+            if (item==="weixin") {
+                containerHTML+='<a href="javascript:void(0);" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
             } else {
-                item.href=urlData[item.dataset.type];
+                containerHTML+='<a href="'+urlData[item]+'" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
             }
-            console.log(item.href);
         });
+        containerHTML+='</div>';
+        return containerHTML;
     }
-    // qcode 生成二维码
-    function makeQcode(val) {
-        // 导入qcode.js
-        var script=d.createElement("script");
-        var qcodeDIV=d.createElement("div");
-        script.src="./js/qrcode.min.js";
-        qcodeDIV.id="qrcode";
-        d.body.appendChild(script);
-        d.body.appendChild(qcodeDIV);
-        // 生成qrcode
+    // hover weixin qrcode  show or hide
+    function weixinHover(weixin,qrcode) {
+        weixin.addEventListener("click",function () {
+            qrcode.style.display="block";
+        },false);
+        qrcode.addEventListener("click",function () {
+            qrcode.style.display="none";
+        },false);
+    }
 
-        //var qrcode=new QRCode(document.getElementById("qrcode"), val);
+    // class
+    function Share(config) {
+        this.config=config;
+        this.el=document.getElementById(this.config.el);
+        this.init();
+        return this;
     }
-    // 初始化插件
-    function init() {
-        // init default value
-        if (!isCustomer) {
-            COMMONDATA["share"]={
-                "url":w.location.href,
-                "title":d.getElementsByTagName("title")[0].innerHTML || "",
-                "description":d.getElementsByName("description")[0].content || "",
-                "pic":null,
-                "appkey":null // temp
-            };
+
+    Share.prototype.init=function () {
+        var that=this;
+        // 生成HTML结构
+        var html=makeTemplate(that.config.bounds,that.config.info);
+        // 插入到DOM中
+        that.el.innerHTML=html;
+        // 判断是否需要qrcode
+        if (that.config.bounds.indexOf("weixin")!=-1) {
+            // 防止重复引入js
+            var QRS=document.getElementById("QRS");
+            if (QRS===null) {
+                QRS=document.createElement("script");
+                QRS.src="./js/qrcode.min.js";
+                QRS.id="QRS";
+                document.head.appendChild(QRS);
+            }
+            QRS.addEventListener("load",function () {
+                var qrNode=document.getElementById(that.config.QRCdom);
+                var weixinNode=that.el.querySelectorAll(".weixin")[0];
+                new QRCode(qrNode,that.config.info.url);    
+                weixinHover(weixinNode,qrNode);
+            },false);
         }
-        // 初始化HTML结构和CSS样式
-        var container=d.getElementById("shareArea") || d.body.appendChild(d.createElement("div"));
-        container.innerHTML=COMMONDATA["template"];
+    };
 
-        var shareBOX=d.getElementById("shareBOX");
-        var shareItem=shareBOX.getElementsByClassName("share-item");
-        // 初始化链接
-        setAnchorHref(shareItem);
-
-    }
-    window.addEventListener("load",init,false);
-
-}(window,document));
+    window.Share=Share;
+}(window));

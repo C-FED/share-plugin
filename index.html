@@ -21,8 +21,8 @@
     <div id="qrcode2" class="qrcode" style="display:none;"><p class="title">微信扫一扫 | 点击关闭</p></div>
     <!-- MyShare END -->
 
-<script type="text/javascript" src="./js/share.new.js"></script>
-<script type="text/javascript" src="./js/qrcode.min.js"></script>
+<script type="text/javascript" src="./js/share.js"></script>
+<!-- <script type="text/javascript" src="./js/qrcode.min.js"></script> -->
 <script>
     new Share({
         el:"shareArea", // id
@@ -33,15 +33,7 @@
             description:"我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
             pic:"https://www.baidu.com/img/bd_logo1.png"
         },
-        callback:function (val) {
-            var qrcode=document.getElementById("qrcode");
-            var weixin=document.getElementById("shareArea").querySelectorAll(".weixin")[0];
-            new QRCode(qrcode,val);
-            return {
-                qrcode,
-                weixin
-            };
-        }
+        QRCdom:"qrcode" // id
     });
 
     new Share({
@@ -53,15 +45,7 @@
             description:"我是描述22224234324324434我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
             pic:"http://www.315online.com/uploads/121022/taobao.jpg"
         },
-        callback:function (val) {
-            var qrcode=document.getElementById("qrcode2");
-            var weixin=document.getElementById("shareArea2").querySelectorAll(".weixin")[0];
-            new QRCode(qrcode,val);
-            return {
-                qrcode,
-                weixin
-            };
-        }
+        QRCdom:"qrcode2" // id
     });
 </script>
 </body>
