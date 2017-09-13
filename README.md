@@ -1,8 +1,10 @@
 # share-plugin  
 
-Author:Yangfan2016
-Theme:share-plugin 
-PS:IE9+
+Author:Yangfan2016  
+Theme:share-plugin    
+PS:IE9+   
+
+------------------------
 
 ## 引入文件  
 
@@ -78,9 +80,32 @@ PS:IE9+
     ```
 4. 参数
 
-el: DOM   分享插件的容器
-bounds: Array  分享平台的范围 ["weibo","weixin","qq","qqzone","qqweibo","renren","douban","facebook","googleplus"]
-info: Object   分享的信息 {url,title,description,pic}
+<table>
+        <thead>
+            <tr>
+                <td>参数</td>
+                <td>类型</td>
+                <td>注释</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>el</td>
+                <td>DOM</td>
+                <td>分享插件的容器</td>
+            </tr>
+            <tr>
+                <td>bounds</td>
+                <td>Array</td>
+                <td>分享平台的范围 ["weibo","weixin","qq","qqzone","qqweibo","renren","douban","facebook","googleplus"]</td>
+            </tr>
+            <tr>
+                <td>info</td>
+                <td>Object</td>
+                <td>分享的信息 {url,title,description,pic}</td>
+            </tr>
+        </tbody>
+    </table>
 
 5. 声明
 
