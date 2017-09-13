@@ -109,6 +109,6 @@ share.makeShare({
 
 ### Attention
 
-LISCENCE:MIT   
+LICENSE:MIT   
 
 DEPEND: QRCode [https://davidshimjs.github.io/qrcodejs/](https://davidshimjs.github.io/qrcodejs/)  
