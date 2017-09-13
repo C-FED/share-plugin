@@ -7,8 +7,9 @@
     width:32px;
     height:32px;
     margin:0 2px;
-    background-position:0 0;
-    background-image:url("../images/share_ico_32x32.png");
+    background-position-x:0;
+    background-position-y:-10px;
+    background-image:url("../images/css_sprites(32).png");
     color:transparent;
     -webkit-filter:grayscale(100%);
     filter:grayscale(100%);
@@ -20,22 +21,31 @@
     filter:alpha(opacity=80);
 }
 .share-item.weixin{
-    background-position:0 -3680px;        
+    background-position-x:-426px;        
 }
 .share-item.weibo{
-    background-position:0 0;
+    background-position-x:-322px;
 }
 .share-item.qq{
-    background-position:0 -4032px;
+    background-position-x:-166px;
 }
 .share-item.qqzone{
-    background-position:0 -32px;
+    background-position-x:-114px;
 }
 .share-item.qqweibo{
-    background-position:0 -1760px;
+    background-position-x:-270px;
 }
 .share-item.renren{
-    background-position:0 -64px;
+    background-position-x:-218px;
+}
+.share-item.douban{
+    background-position-x:-10px;
+}
+.share-item.googleplus{
+    background-position-x:-374px;
+}
+.share-item.facebook{
+    background-position-x:-62px;
 }
 .qrcode{
     position:fixed;

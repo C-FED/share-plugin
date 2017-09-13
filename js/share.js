@@ -13,6 +13,9 @@
             "qqzone":"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+URL+"&title="+TITLE+"&pics="+PIC+"&summary="+DESCRIPTION,
             "renren":"http://widget.renren.com/dialog/share?resourceUrl="+URL+"&srcUrl="+URL+"&title="+TITLE+"&pic="+PIC+"&description="+DESCRIPTION,
             "qqweibo":"http://share.v.t.qq.com/index.php?c=share&a=index&title="+TITLE+"   "+DESCRIPTION+"&url="+URL+"&appkey=ce15e084124446b9a612a5c29f82f080&site=www.jiathis.com&pic="+PIC,
+            "douban":"https://www.douban.com/share/service?image="+PIC+"&href="+URL+"&name="+TITLE+"&text="+DESCRIPTION,
+            "googleplus":"https://plus.google.com/share?url="+URL+"&t="+TITLE,
+            "facebook":"https://www.facebook.com/sharer.php?s=100&p[title]="+TITLE+"&p[summary]="+DESCRIPTION+"&p[url]="+URL+"&p[images]="+PIC
         };
     }
     // make html
