@@ -5,10 +5,12 @@
  * @depend: qrcode.js
  * @version: 1.0.2
  * [share-plugin]
+ * @bug: qqweibo
  * @return {[Share]} [description]
  */
 ;(function () {
     var QRCode=window.QRCode;
+    var headMetaDescription=document.getElementsByName("description")[0];
     // 生成分享URL
     function makeShareURL(shareData) {
         var URL=encodeURIComponent(shareData.url);
@@ -22,7 +24,7 @@
             "qq":"http://connect.qq.com/widget/shareqq/index.html?url="+URL+"&title="+TITLE+"&pics="+PIC,
             "qqzone":"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url="+URL+"&title="+TITLE+"&pics="+PIC+"&summary="+DESCRIPTION,
             "renren":"http://widget.renren.com/dialog/share?resourceUrl="+URL+"&srcUrl="+URL+"&title="+TITLE+"&pic="+PIC+"&description="+DESCRIPTION,
-            "qqweibo":"http://share.v.t.qq.com/index.php?c=share&a=index&title="+TITLE+"   "+DESCRIPTION+"&url="+URL+"&appkey=ce15e084124446b9a612a5c29f82f080&site=www.jiathis.com&pic="+PIC,
+            "qqweibo":"http://share.v.t.qq.com/index.php?c=share&a=index&title="+TITLE+"   "+DESCRIPTION+"&url="+URL+"&appkey=ce15e084124446b9a612a5c29f82f080&site=www.jiathis.com&pic="+PIC, //temp appkey
             "douban":"https://www.douban.com/share/service?image="+PIC+"&href="+URL+"&name="+TITLE+"&text="+DESCRIPTION,
             "googleplus":"https://plus.google.com/share?url="+URL+"&t="+TITLE,
             "facebook":"https://www.facebook.com/sharer.php?s=100&p[title]="+TITLE+"&p[summary]="+DESCRIPTION+"&p[url]="+URL+"&p[images]="+PIC
@@ -89,7 +91,7 @@
             info={
                 url:window.location.href,
                 title:document.title,
-                description:document.getElementsByName("description")[0]["content"]
+                description:(typeof headMetaDescription==="undefined")?"":headMetaDescription["content"],
             };
             html=makeTemplate(that.config.bounds,info);
             // 存储到类
