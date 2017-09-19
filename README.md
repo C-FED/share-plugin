@@ -6,6 +6,20 @@ PS:IE9+
 
 ------------------------
 
+## 文件结构
+
+--css--share.min.css
+--js--- _share.min.js
+       |_qrcode.min.js
+      
+--image--css_sprites(32).png
+
+
+
+
+
+
+
 ## How to use
 
 ### 1. 引入css文件  
