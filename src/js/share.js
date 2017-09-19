@@ -34,7 +34,7 @@
     function makeTemplate(arr,shareData) {
         // ["weibo","weixin"]
         var urlData=makeShareURL(shareData);
-        var containerHTML='<div class="sharebox">';
+        var containerHTML='';
         arr.forEach(function (item,index) {
             if (item==="weixin") {
                 containerHTML+='<a onclick="return false;" href="javascript:void(0);" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
@@ -42,7 +42,6 @@
                 containerHTML+='<a href="'+urlData[item]+'" target="_blank" class="share-item '+item+'" data-type="'+item+'"></a>';        
             }
         });
-        containerHTML+='</div>';
         return containerHTML;
     }
     // hover weixin qrcode  show or hide
@@ -81,6 +80,7 @@
     Share.prototype.init=function () {
         var that=this;
         var html='';
+        var tempEle=document.createElement("div");
         var info={};
         // 生成HTML结构
         // 判断是否有分享信息
@@ -97,9 +97,11 @@
             // 存储到类
             that.config.info=info;
         }
+        tempEle.innerHTML=html;
+        tempEle.className="sharebox";
         // 插入到DOM中
-        that.el.querySelectorAll(".sharebox")[0] && that.el.removeChild(that.el.querySelectorAll(".sharebox")[0]);
-        that.el.innerHTML+=html;
+        that.el.querySelectorAll(".sharebox")[0] && that.el.querySelectorAll(".sharebox")[0].remove();
+        that.el.appendChild(tempEle);
         // 判断是否需要qrcode
         if (that.config.bounds.indexOf("weixin")!=-1) {
             makeQRCode(that);
