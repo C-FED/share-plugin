@@ -1,8 +1,8 @@
 # share-plugin  
 
-Author:Yangfan2016  
-Theme:share-plugin    
-PS:IE9+   
+### Author:Yangfan2016  
+### Theme:share-plugin    
+### PS:IE9+   
 
 ------------------------
 
