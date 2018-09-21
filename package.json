@@ -1,0 +1,22 @@
+{
+  "name": "share-plugin",
+  "version": "1.0.0",
+  "description": "This is share plugin",
+  "main": "src/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "clean:dist":"rm -rf dist/",
+    "clean:pak":"rm -rf node_modules/"
+  },
+  "devDependencies": {
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "typescript":"^3.0.3",
+    "ts-loader": "^5.1.1"
+  }
+}
