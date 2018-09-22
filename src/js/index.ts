@@ -15,6 +15,7 @@ interface iShareConfig {
     info: iShareData
 }
 
+
 // helpers
 function serialize(options: any): string {
     let list: any[] = [];
@@ -30,11 +31,11 @@ export class Share {
     config: iShareConfig;
     info: iShareData;
     QRCode: any;
-    constructor(selector:string, config: iShareConfig, QRCode?: any) {
+    constructor(selector:string, config: iShareConfig) {
         this.el = document.querySelector(selector);
         this.config = config;
         this.info = Object.assign({}, config.info);
-        this.QRCode = QRCode;
+        this.QRCode =(window as any).QRCode;
         // 加入qrcode结构
         let div = document.createElement("div");
         div.className = "qrcode";

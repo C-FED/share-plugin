@@ -5,32 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <meta name="description" content="Qzone分享组件是QQ互联提供的一种社交组件，通过添加QQ互联的分享组件，用户可以将该站点的内容分享到QQ空间和朋友网，QQ互联提供多种分享组件格式供网站主选择；"> -->
+    <meta name="description" content="Qzone分享组件是QQ互联提供的一种社交组件，通过添加QQ互联的分享组件，用户可以将该站点的内容分享到QQ空间和朋友网，QQ互联提供多种分享组件格式供网站主选择；">
     <meta name="keywords" content="分享、分享组件、分享到QQ空间、分享到朋友网、QQ互联">
     <title>Document</title>
     <link rel="stylesheet" href="./src/css/share.min.css" />
 </head>
 
 <body>
-    <div id="shareArea">
+    <div id='shareArea'>
         <!-- MyShare -->
     </div>
+    <button id='refresh'>refresh share data</button>
 
     <script type="text/javascript" src="./src/libs/qrcode.min.js"></script>
     <script type="text/javascript" src="./dist/Share.min.js"></script>
     <script>
         var share = new Share("#shareArea", {
-            bounds: ["weibo", "weixin", "douban", "googleplus"],
-        }, QRCode);
+            bounds: [
+                "weibo",
+                "weixin",
+                "qq",
+                "qqzone",
+                "renren",
+                "qqweibo",
+                "douban",
+                "googleplus",
+                "facebook"
+            ],
+        });
 
-        // share.makeShare({
-        //     url:"http://www.baidu.com",
-        //     title:"你好标题",
-        //     description:"我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
-        //     pic:"https://www.baidu.com/img/bd_logo1.png"
-        // });
-
-
+        refresh.addEventListener("click", function () {
+            share.makeShare({
+                url: "http://www.baidu.com",
+                title: "你好标题",
+                description: "我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述我是描述",
+                pic: "https://www.baidu.com/img/bd_logo1.png"
+            });
+        });
     </script>
 </body>
 
