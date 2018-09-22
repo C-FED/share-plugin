@@ -3,11 +3,11 @@ This is share plugin
 
 ![share-plugin-icons](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-icons%200.png)
 
-![share-plugin-weibo.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-weibo.JPG)
-![share-plugin-douban.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-douban.JPG)
-![share-plugin-qqzone.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-qqzone.JPG)
-![share-plugin-renren.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-renren.JPG)
-![share-plugin-weixin.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-weixin.JPG)
+![share-plugin-weibo.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-weibo.JPG)  
+![share-plugin-douban.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-douban.JPG)  
+![share-plugin-qqzone.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-qqzone.JPG)  
+![share-plugin-renren.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-renren.JPG)  
+![share-plugin-weixin.JPG](https://raw.githubusercontent.com/Yangfan2016/PicBed/master/Blog/share-plugin-weixin.JPG)  
 
 ### Example
 
