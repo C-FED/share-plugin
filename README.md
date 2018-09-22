@@ -42,6 +42,9 @@ share.makeShare({
 
 ### API
 
+```js
+new Share(selector,cofig);
+```
 
 #### Arguments 
 
